@@ -1,0 +1,53 @@
+#! /usr/bin/env 8th
+\ vim: ft=8th:
+\
+
+needs rand/range
+needs console/loaded
+with: con
+  bright cyan onBlack
+
+"123456789abcdefghijklmnopqrtstuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*" var, characters
+
+"" var, pstring
+"" var, passwordstring
+
+: get5Characters    
+    5 
+    repeat
+      characters @ s:len
+      1 swap rand-range 
+      s:@ 
+      passwordstring @ swap s:+ passwordstring !
+      drop
+      n:1-
+    while
+;
+
+: removelast
+    passwordstring @ 
+    s:len n:1-
+    s:lsub
+    passwordstring !
+;
+
+: printpassword
+    passwordstring @ 
+    cr
+    "Password:   " . (puts) cr 
+    cr
+;
+
+: buildstring
+    ( get5Characters
+    passwordstring @ 
+    "-" s:+
+    passwordstring ! ) 4 times
+;
+
+: app:main
+  buildstring
+  removelast
+  printpassword
+  bye 
+; 
