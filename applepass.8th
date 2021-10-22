@@ -11,26 +11,29 @@ with: con
 
 "" var, passwordstring
 
-: get6Characters    
+: get6Characters  
+    --  
     6 
     repeat
-      characters @ s:len
-      1 swap rand-range 
+      characters @ s:len 
+      1 swap rand-range \ range frpm 1 to string length
       s:@ 
-      passwordstring @ swap s:+ passwordstring !
+      passwordstring @ swap s:+ passwordstring ! \ add selected char and store
       drop
       n:1-
     while
 ;
 
-: removelast
+: removelastchar
+    --
     passwordstring @ 
     s:len n:1-
-    s:lsub
+    s:lsub        \ select left substring
     passwordstring !
 ;
 
 : printpassword
+      --
     passwordstring @ 
     cr
     "Password:   " . (puts) cr 
@@ -38,6 +41,8 @@ with: con
 ;
 
 : buildstring
+      --
+  \ get 3 groups of characters and separate by hyphens
     ( get6Characters
     passwordstring @ 
     "-" s:+
@@ -46,7 +51,7 @@ with: con
 
 : app:main
   buildstring
-  removelast
+  removelastchar
   printpassword
   bye 
 ; 
