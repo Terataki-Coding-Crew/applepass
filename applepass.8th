@@ -9,7 +9,6 @@ with: con
 
 "123456789abcdefghijklmnopqrtstuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*" var, characters
 
-"" var, pstring
 "" var, passwordstring
 
 : get5Characters    
