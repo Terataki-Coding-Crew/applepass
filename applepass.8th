@@ -11,8 +11,8 @@ with: con
 
 "" var, passwordstring
 
-: get5Characters    
-    5 
+: get6Characters    
+    6 
     repeat
       characters @ s:len
       1 swap rand-range 
@@ -38,10 +38,10 @@ with: con
 ;
 
 : buildstring
-    ( get5Characters
+    ( get6Characters
     passwordstring @ 
     "-" s:+
-    passwordstring ! ) 4 times
+    passwordstring ! ) 3 times
 ;
 
 : app:main
